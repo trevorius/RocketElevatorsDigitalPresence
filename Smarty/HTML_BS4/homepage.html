@@ -52,7 +52,7 @@
 		BACKGROUND IMAGE [together with .boxed class]
 		data-background="assets/images/_smarty/boxed_background/1.jpg"
 	-->
-	<body class="smoothscroll enable-animation grain-blue">
+	<body class="smoothscroll enable-animation grain-blue ">
 
 		<!-- SLIDE TOP  commented out-->
 		<!--
@@ -1365,7 +1365,7 @@
 											</div>
 											<div class="col-md-4">
 												<label for="contact_department">Department *</label>
-												<select class="form-control pointer" name="contact[department][required]">
+												<select  required class="form-control pointer" name="contact[department][required]">
 													<option value="">--- Select ---</option>
 													<option value="corporate">Corporate</option>
 													<option value="residential">Residential</option>
@@ -1427,28 +1427,13 @@
 								h-550
 								h-600
 							-->
-							<div id="mp" class="h-400 item-box mix">
-								<figure>
-									<span class="item-hover">
-										<span class="overlay dark-5"></span>
-										<span class="inner">
-
-											<!-- lightbox -->
-											<a class="ico-rounded lightbox" href="assets/images/Screen Shot 2020-09-04 at 7.07.39 PM.png" data-plugin-options='{"type":"image"}'>
-												<span class="fa fa-plus fs-20"></span>
-											</a>
-
-											<!-- details -->
-												<a class="ico-rounded" href="https://www.google.com/maps/place/725+Boulevard+Lebourgneuf,+Qu%C3%A9bec,+QC+G2J+1S1/@46.8402066,-71.283722,14.21z/data=!4m5!3m4!1s0x4cb897ddc2cec043:0xd450d4d0da014cc8!8m2!3d46.8428399!4d-71.2796948?hl=en" target="_blank">
-												<span class="glyphicon glyphicon-option-horizontal fs-20"></span>
-											</a>
-
-										</span>
-									</span>
-
-									<img class="img-fluid" src="assets/images/Screen Shot 2020-09-04 at 7.02.39 PM.png" width="600" height="399" alt="">
-								</figure>
-								
+							 <div id="mp" class="h-400 item-box mix">
+									<iframe width="400" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" 
+									src="https://maps.google.com/maps?width=400&amp;height=400&amp;hl=en&amp;q=725%20boulevard%20lebourgneuf%20Qu%C3%A9bec+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+									</iframe> 
+									<a href='http://maps-generator.com/fr'>ajouter GoogleMaps</a> 
+									<script type='text/javascript' src='https://maps-generator.com/google-maps-authorization/script.js?id=7e06a4f7d1efd7031fb9f225d20d38703385a14d'>
+									</script>		
 							
 							</div>
 

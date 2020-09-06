@@ -230,7 +230,145 @@
 
 				</div>
 			</section>
-			<!-- /PAGE HEADER -->
+            <!-- /PAGE HEADER -->
+            
+
+            <!-- quotation form-->
+            <div class="col-md-12 col-sm-8">
+                <form>
+                    <fieldset>
+                        
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Project type<br>   </label>
+                                <select class="form-control pointer" name="Project" id="type">
+                                    <option value="">--- Select ---</option>
+                                    <option value="corporate">Corporate</option>
+                                    <option value="residential">Residential</option>
+                                    <option value="commercial">Commercial</option>
+                                    <option value="hybrid">Hybrid</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                    <label>Appartements</label>
+                                    <input type="number" placeholder="number of" value="" class="form-control" name="appartments" id="appartements">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>disinct buisnesses</label>
+                                    <input type="number" placeholder="number of" value="" class="form-control" name="buisnesses" id="buisness">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>seperate companies</label>
+                                    <input type="number" placeholder="number of" value="" class="form-control" name="companies" id="companies">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>floors</label>
+                                    <input type="number" placeholder="number of" value="" class="form-control" name="floors" id="floors">
+                                </div>
+                                
+                                
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>basements</label>
+                                <input type="number" placeholder="number of" value="" class="form-control" name="basements" id="basements">
+                            </div>
+                            <div class="col-md-2">
+                                <label>parking spaces</label>
+                                <input type="number" placeholder="number of" value="" class="form-control" name="parking" id="parking">
+                            </div>
+                            <div class="col-md-2">
+                                <label> occupants per floor</label>
+                                <input type="number" placeholder="maximum nbr of" value="" class="form-control" name="occupants" id="occupants">
+                            </div>
+                            <div class="col-md-2">
+                                <label>basements</label>
+                                <input type="number" placeholder="number of" value="" class="form-control" name="basements" id="basements">
+                            </div>
+                            <div class="col-md-2">
+                                <label>elevator cages</label>
+                                <input type="number" placeholder="number of" value="" class="form-control" name="cages" id="cages">
+                            </div>
+                            <div class="col-md-2">
+                                <label>hours of activity</label>
+                                <input type="number" placeholder="number of" max="24" value="" class="form-control" name="basements" id="basements">
+                            </div>
+                        </div>
+                        
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <div class="row">   
+                        <div class="col-md-4">
+                            <label for="shafts" >number of shafts required</label>
+                            <input readonly id="shafts" type="number" value="" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="columns" >number of columns required</label>
+                            <input readonly id="columns" type="number" value="" class="form-control">
+
+                        </div>
+                    </div>   
+                </form>
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">Product Line</div>
+                        <div class="col-md-3 text-center">
+                            <input type="radio" id="standard" name="options" value="standard">
+                            <label for="standard">STANDARD</label>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <input type="radio" id="premium" name="options" value="Premium">
+                            <label for="premium">PREMIUM</label>
+                        </div>
+                        <div class="col-md-3 text-center">    
+                            <input type="radio" id="excelium" name="options" value="excelium">
+                            <label for="excelium">EXCELIUM</label>
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <div clas="row">
+                        <div class="col-md-4">    
+                            <label for="line" >Price per elevator cage in <span id="selected-line">(selected)</span></label> 
+                            <input readonly id="line" type="number" value="" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fee" >Installation Fees </label>
+                            <input readonly type="text" id="fee-percent" value="" class="form-control">
+                            <input readonly type="number" id="fee" value="" class="form-control">
+                            
+                        </div>
+                    </div>
+                    
+                </form>    
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="total">TOTAL ESTIMATE</label>
+                        <input readonly type="text" id="total" value="" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- /quotation form-->
+
+
+
+
+
+
+
+
+
+
 	<!-- FOOTER -->
     <footer id="footer">
         <div class="container">
