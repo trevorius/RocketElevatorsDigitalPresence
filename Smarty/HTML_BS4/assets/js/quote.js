@@ -61,6 +61,7 @@
 	};
 	parseVar();
 	
+	//logVariables();
 	var logVariables = function(){
 		console.log("row1 : "+"type "+ type + ", apt " + appartements +", buisnesses "+ buisness + ', companies '+ companies + ', floors '+ floors);
 		console.log( "row2 : "+" basements "+ basements + ", parking "+ parking + ", occupants " + occupants + ", cages "+ cages+ ", activity" + activity);
@@ -69,7 +70,11 @@
 		console.log("TOTAL : " + ttl);
 
 		};
-	//logVariables();
+	//calculate number of columns
+	var numberColumns = function (){
+		columns = 1 + Math.floor(floors / floorsPerColumn);
+	};
+
 
 	//hide all fields except building type selection
 	var hide = function(){
@@ -102,10 +107,10 @@
 		//calculate average doors per floor (appartements/floors) 
 		var avgDoors = Math.ceil(appartements / floors);
 		//calculate number of columns ( 1 + (floors/floorsPerColumn))
-		columns = Math.ceil(floors / floorsPerColumn);
+		numberColumns();
 		//calculate number of shafts 1 for 6 appartments *columns
 		shafts = Math.ceil(avgDoors / 6 ) * columns;
-		//logVariables();
+		logVariables();
 	};
 	
 	//calculator for corporate and hybrid buildings
@@ -120,7 +125,7 @@
 		//number of columns ((floors+basements)/FloorsPerColumn)
 			 
 		stories = floors+basements;
-		columns = Math.ceil(stories / floorsPerColumn);
+		numberColumns();
 		//number of elevators per column ([elevators|shafts]/columns)
 		var elevatorsPerColumn = Math.ceil(elevators / columns);
 		//create a display field to show elevatorsPerColumn and number of elevators(temporary value)
@@ -289,6 +294,8 @@ $(document).ready(function(){
 		type = $('#type').val();
 		$('.hidden').hide(500);
 		$('.line-selector').prop('checked',false);
+		$('.fee').hide(200);
+		selectedLine = "";
 		//logVariables();
 		typeSelector();
 	});
@@ -413,3 +420,4 @@ $(document).ready(function(){
 		feeDisplay();
 	});
 });
+
