@@ -72,7 +72,8 @@
 		};
 	//calculate number of columns
 	var numberColumns = function (){
-		columns = 1 + Math.floor(floors / floorsPerColumn);
+		stories = floors + basements;
+		columns = 1 + Math.floor(stories / floorsPerColumn);
 	};
 
 
@@ -124,7 +125,6 @@
 		var elevators = Math.ceil(totalOccupants / 1000); 
 		//number of columns ((floors+basements)/FloorsPerColumn)
 			 
-		stories = floors+basements;
 		numberColumns();
 		//number of elevators per column ([elevators|shafts]/columns)
 		var elevatorsPerColumn = Math.ceil(elevators / columns);
