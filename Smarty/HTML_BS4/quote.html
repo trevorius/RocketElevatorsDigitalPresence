@@ -31,8 +31,7 @@
 		<link href="assets/css/color_scheme/red.css" rel="stylesheet" type="text/css" id="color_scheme" />
 	</head>
 
-	<!--
-		AVAILABLE BODY CLASSES:
+	<!--AVAILABLE BODY CLASSES:
 		
 		smoothscroll 			= create a browser smooth scroll
 		enable-animation		= enable WOW animations
@@ -54,53 +53,12 @@
 	-->
 	<body class="smoothscroll enable-animation ">
 
-		<!-- SLIDE TOP -->
-		<div id="slidetop">
-<!--
-			<div class="container">
-				
-				<div class="row">
-
-					<div class="col-md-4">
-						<h6><i class="icon-heart"></i> WHY SMARTY?</h6>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. </p>
-					</div>
-
-					<div class="col-md-4">
-						<h6><i class="fa-facheck"></i> RECENTLY VISITED</h6>
-						<ul class="list-unstyled">
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> This is a very long text, very very very very very very very very very very very very </a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Dolor sit amet,consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet,consectetur adipiscing elit</a></li>
-						</ul>
-					</div>
-
-					<div class="col-md-4">
-						<h6><i class="icon-envelope"></i> CONTACT INFO</h6>
-						<ul class="list-unstyled">
-							<li><b>Address:</b> PO Box 21132, Here Weare St, <br /> Melbourne, Vivas 2355 Australia</li>
-							<li><b>Phone:</b> 1-800-565-2390</li>
-							<li><b>Email:</b> <a href="mailto:support@yourname.com">support@yourname.com</a></li>
-						</ul>
-					</div>
-
-				</div>
-
-			</div> -->
-
-			<!-- <a class="slidetop-toggle" href="#">  --> <!-- toggle button --></a>
-
-		</div>
-		<!-- /SLIDE TOP -->
-
+	
 
 		<!-- wrapper -->
 		<div id="wrapper">
 
-			<!-- 
-				AVAILABLE HEADER CLASSES
+			<!-- AVAILABLE HEADER CLASSES
 
 				Default nav height: 96px
 				.header-md 		= 70px nav height
@@ -234,7 +192,7 @@
             
 
             <!-- quotation form-->
-            <div class="col-md-12 col-sm-8">
+            <div class="col-md-12 col-sm-12">
 				<!--input form-->
 				<form>
                     <fieldset>
@@ -263,8 +221,8 @@
                                     <label for="companies">seperate companies</label>
                                     <input type="number" placeholder="number of" value="" class="form-control" name="companies" id="companies">
                                 </div>
-                                <div id="florrs-div" class="hidden col-md-2 residential commercial hybrid corporate">
-                                    <label for="floors">floors</label>
+                                <div id="florrs-div" class="hidden col-md-3 residential commercial hybrid corporate">
+                                    <label for="floors">total floors (including basements)</label>
                                     <input type="number" placeholder="number of" value="" class="form-control" name="floors" id="floors">
                                 </div>
                                 
@@ -319,7 +277,7 @@
 				<!--/ elements for quote-->
 				<!--product line selection-->
                 <form id="radio-form">
-                    <div id="row4" class="row hidden">
+                    <div id="row4" class=" row hidden">
                         <div class="col-md-12">Product Line</div>
                         <div class="col-md-3 text-center">
                             <input type="radio" class = "line-selector" id="standard" name="options" value="standard">
@@ -338,27 +296,38 @@
 				<!--/product line selection-->
 				<!--prices and installation costs-->
                 <form>
-                    <div clas="row" id="row5">
-                        <div id="line-div" class="col-md-4 hidden fee">    
-                            <label for="price-per-shaft" >Price per elevator cage in <span id="selected-line">(selected)</span></label> 
-                            <input readonly id="price-per-shaft" type="text" value="" class="form-control">
-                        </div>
-                        <div id="fee-div" class="col-md-4 hidden fee">
-                            <label for="fee" >Installation Fees </label>
-                            <input readonly type="text" id="fee-percent" value="" class="form-control">
-                            <input readonly type="text" id="fee" value="" class="form-control">
-                            
-                        </div>
-                    </div>
+					<div class="row" id="row5">
+                        
+
+							<div id="line-div" class="col-md-4 col-sm-4 hidden fee">    
+								<label for="price-per-shaft" >Price per elevator cage in <span id="selected-line">(selected)</span></label> 
+								<input readonly id="price-per-shaft" type="text" value="" class="form-control">
+							</div>
+							<div id="total-cost-div" class='my-col col-md-4 col-sm-4 hidden fee'>
+								<label for='total-cost'>Total material cost</label>
+								<input readonly id='total-cost' type='text' vaiue="" class="form-control">
+							</div>
+							<div id="fee-div" class="my-col col-md-4 col-sm-4 hidden fee">
+								<label for="fee" >Installation Fees </label>
+								<input readonly type="text" id="fee-percent" value="" class="form-control">
+								<input readonly type="text" id="fee" value="" class="form-control">
+								
+							</div>
+						
+					</div>
                     
 				</form> 
 				<!--/ prices and installation costs--> 
 				<!--total-->  
                 <div id="row6" class="row">
-                    <div id="total-div" class="col-md-4 hidden">
+                    <div id="total-div" class="col-md-4  col-sm-4 hidden total-div">
                         <label for="total">TOTAL ESTIMATE</label>
                         <input readonly type="text" id="total" value="" class="form-control">
-                    </div>
+					</div>
+					<div id="empty" class ='col-md-2 sm-2'></div>
+					<div id= "final-logo" class='col-md-4 col-sm-4'>
+						<img  class='img-fluid' src='assets/images/elevatorPics/R2.png' alt="company logo">
+					</div>
 				</div>
 				<!--/total-->
 
@@ -452,412 +421,11 @@
 <script src="assets/plugins/jquery/jquery-3.3.1.min.js"></script>
 
 <script src="assets/js/scripts.js"></script>
+<script src="assets/js/quote.js"></script>
 
 
 <!-- PAGE LEVEL SCRIPTS [cart js] -->
 <script>
-
-	//save values into variables of the same name (for navigation simplicity)
-
-	//row1 variables
-	var type = $('#type').val();
-	var appartements = $("#appartements").val();
-	var buisness = $("#buisness").val();
-	var companies = $("#companies").val();
-	var floors = $('#floors').val();
-	//row2 variables
-	var basements = $('#basements').val();
-	var parking = $('#parking').val();
-	var occupants = $("#occupants").val();
-	var cages = $("#cages").val();
-	var activity = $("#activity").val();
-	//row3 variables
-	var columns = $('#columns').val();
-	var shafts = $('#shafts').val();
-	//row4 variables
-	var selectedLine ;
-	var feePercent;
-	var pricePerShaft;
-	var standardPrice = 7565 , premiumPrice = 12345 , exceliumPrice = 15400; 
-	var standardFee  = 10 , premiumFee = 13 , exceliumFee = 16;
-	var instalationPrice;
-	var fee;
-	
-
-	//global variable for the number of floors before adding a column can be changed if regulations change.
-	var floorsPerColumn = 20;
-	var stories = floors + basements;
-
-	//converts a number to a string formated xxx,xxx,xxx (copied from blog.abelotech.com)
-	var formatNumber = function(x){
- 		return x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-	};
-
-
-	var logVariables = function(){
-		console.log("row1 : "+"type "+ type + " apt " + appartements +" buis "+ buisness + ' companies '+ companies + ' floors '+ floors);
-		console.log( "row2 : "+" basements "+ basements + " parking "+ parking + " occupants " + occupants + " cages "+ cages+ " activity" + activity)
-		};
-	logVariables();
-
-	//hide all fields except building type selection
-	var hide = function(){
-	$(".hidden").hide();
-	};
-	hide();
-	
-	//function for the first building type selection	
-	var typeSelector = function(){
-			if (type === 'residential'){
-				console.log (type);
-				$('.residential').show(500);
-
-			}else if(type === "corporate"){
-				console.log(type);
-				$('.corporate').show(500);
-			}else if (type === "commercial"){
-				console.log (type);
-				$('.commercial').show(500);
-				comCalc();
-
-			}else if(type === "hybrid"){
-				console.log(type);
-				$('.hybrid').show(500);
-			}else {
-				console.log("null");
-				return;
-			}
-			//calculator();
-	};
-		
-	//calculator for a residential building
-	var resCalc = function(){
-		//calculate average doors per floor (appartements/floors) 
-		var avgDoors = appartements / floors;
-		//calculate number of columns ( 1 + (floors/floorsPerColumn))
-		columns = 1 + Math.floor(floors / floorsPerColumn);
-		//calculate number of shafts 1 for 6 appartments *columns
-		shafts = Math.ceil(avgDoors / 6 ) * columns;
-	};
-	
-	//calculator for corporate and hybrid buildings
-	var corpHybCalc = function(){
-		$("#elevators-per-column-div").remove();
-		//calculate total number of occupants ((floors+basements)*occupants)
-		var totalOccupants = occupants * (floors+basements);
-		//number of elevators (totalOccupants/1000)
-		var elevators = totalOccupants / 1000; 
-		//number of columns ((floors+basements)/FloorsPerColumn)
-			//convert floors and basements to integers
-			floors = parseInt(floors);
-			basements = parseInt(basements); 
-		stories = floors+basements;
-		columns = Math.ceil(stories / floorsPerColumn);
-		//number of elevators per column ([elevators|shafts]/columns)
-		var elevatorsPerColumn = Math.ceil(elevators / columns);
-		//creste a display field to show elevatorsPerColumn
-		$('<div class="col-md-4 hidden" id="elevators-per-column-div" class="hidden">')
-			.appendTo('#row3')
-			.html(	'<label for="elevators-per-column" >number of elevators per column</label><input readonly id="elevators-per-column" type="number" value="" class="form-control">');
-		$('#elevators-per-column').val(elevatorsPerColumn);
-		//calculate total number of elevators (elevatorsPerColumn*columns)
-		shafts = elevatorsPerColumn * columns;
-		console.log(columns);
-		//change text of shaft label to display totalElevators
-		$("#shafts-label").text('total number of elevators');
-
-	};
-
-	//commercial calculator function
-	var comCalc = function(){
-		//display number of cages in shaft field and keep column field hidden
-		shafts = cages ;
-		$('#columns-div').hide();
-
-
-
-	};
-
-
-
-	//general calculator function calls functions depends on type
-	var calculator = function(){
-
-		$('.calculator').show(500);
-
-			if (type === 'residential'){
-				//display the appropriate fields : appartments, floors, basements
-				console.log ("calc"+type);
-				$('.residential').show(500);
-				resCalc();
-		
-			}else if(type === "corporate"){
-				//display the appropriate fields : companies, floors, basements, parking, occupants
-				console.log("calc"+type);
-
-				$('.corporate').show(500);
-				corpHybCalc();
-				
-			}else if (type === "commercial"){
-				console.log ("calc"+type);
-				$('.commercial').show(500);
-				$('#columns-div').hide();
-				comCalc();
-
-			}else if(type === "hybrid"){
-				console.log("calc"+type);
-				$('.hybrid').show(500);
-				corpHybCalc();
-			}else {
-				console.log("null");
-				return;
-			}
-			//display the results in shafts and columns fields
-			
-			$("#shafts").val(shafts);
-			$('#columns').val(columns);
-			console.log("shafts " + shafts);
-			
-				lineSelector();
-			
-		
-			
-	};
-	
-	
-	// radio button form displayer
-	var lineSelector = function(){
-		console.log("lineSelector()")	
-		//display the form if there is a value to quote
-		if (shafts > 0){
-			$('#row4').show(500);
-		}else {
-			$("#row4").hide(500);
-		}
-	};
-
-	//service required by doc
-	var feeCalculator =function (){
-		//display which line was selected in label
-		$('#selected-line').text(selectedLine);
-		console.log("feeCalculator");
-			//if standard is selected 
-			if (selectedLine === "standard"){
-				///price is 7565 (maybe use global variable to make it easyer to change later)
-				return standardPrice;
-			}
-			//if premium is selected 
-			else if (selectedLine === "premium"){
-				//price is 12345 (maybe use global variable to make it easyer to change later)
-				return premiumPrice;
-			}
-			//if excelium is selected
-			else if (selectedLine === "excelium"){
-				//feePercent is 16
-				//return exceliumFee;
-				//price is 15400 (maybe use global variable to make it easyer to change later)
-				return exceliumPrice;
-			}else {
-				return;
-			}
-	};
-	
-	var feeDisplay = function(){
-		console.log("feeDisplay()");
-		//display price in the field var 
-		if (selectedLine === "standard" ||
-			selectedLine === "premium" ||
-			selectedLine === "excelium"){
-			$('.fee').show(500);
-		}else {
-			$('.fee').hide();
-		}
-		if (selectedLine === "standard"){
-				//feepercent is 10
-				feePercent = standardFee;
-			}
-			//if premium is selected
-		else if (selectedLine === "premium"){
-				//feePercent is 13
-				feePercent = premiumFee;
-			}
-			//if excelium is selected
-		else if (selectedLine === "excelium"){
-				//feePercent is 16
-				feePercent = exceliumFee;
-		}else {
-				return;
-		}
-		//displays prices
-		var pricePerShaftString = formatNumber(pricePerShaft); 
-		console.log(pricePerShaftString);
-		$('#price-per-shaft').val(pricePerShaftString + ' $');
-		$('#fee-percent').val(feePercent + ' %');
-		//not necessary display installation fee percentage 
-		//calculate installation fee (feePercent * shafts * priceOfLine)
-		fee = Math.round((feePercent/100 * shafts * pricePerShaft) * 100) / 100;
-		var feeString = formatNumber(fee);
-		$('#fee').val(feeString + ' $');
-	calcTotal();
-	};	
-	
-	//Total Estimate field
-	var calcTotal = function(){
-		console.log("calcTotal()");
-	//calculate TOTAL ( (shafts * priceOfLine) + installationFee ) and display
-		$('#total-div').show();
-		var total = (shafts * pricePerShaft) + fee;
-		var totalString = formatNumber(total);
-		$('#total').val(totalString + ' $');
-
-	};
-
-$(document).ready(function(){
-	//changes values as user inputs values to form
-	//row1
-
-	$('#type').on('change',function(event){
-		type = $('#type').val();
-		$('.hidden').hide(500);
-		$('.line-selector').prop('checked',false);
-		logVariables();
-		typeSelector();
-	});
-
-	$('#buisness').on('change',function(event){
-		buisness = $('#buisness').val();
-		if (buisness < 0){
-			buisness = 0;
-			$('#buisness').val(0);
-		}		
-		logVariables();
-		calculator();
-	});
-
-	$("#appartements").on('change',function(event){
-		appartements = $("#appartements").val();
-		if (appartements < 0){
-		    appartements = 0;
-			$('#appartements').val(0);
-		}
-		logVariables();
-		calculator();
-	});
-
-	$('#companies').on('change',function(event){
-		companies = $('#companies').val();
-		if (companies < 0){
-			companies = 0;
-			$('#companies').val(0);
-		}
-		logVariables();
-		calculator();
-	});
-
-	$('#floors').on('change',function(event){
-		floors = $('#floors').val();
-		if (floors < 0){
-			floors = 0;
-			$('#floors').val(0);
-		}
-		logVariables();
-		calculator();
-	});
-	//row2
-	$('#basements').on('change',function(event){
-		basements = $('#basements').val();
-		if (basements < 0){
-			basements = 0;
-			$('#basements').val(0);
-		}
-		logVariables();
-		calculator();
-	});
-
-	$('#parking').on('change',function(event){
-		parking = $('#parking').val();
-		if (parking < 0){
-			parking = 0;
-			$('#parking').val(0);
-		}
-		logVariables();
-		calculator();
-	});
-	
-	$('#occupants').on('change',function(event){
-		occupants = $('#occupants').val();
-		if (occupants < 0){
-			occupants = 0;
-			$('#occupants').val(0);
-		}
-		logVariables();
-		calculator();
-	});
-
-	$('#cages').on('change',function(event){
-		cages = $('#cages').val();
-		if (cages < 0){
-			cages = 0;
-			$('#cages').val(0);
-		}
-		logVariables();
-		calculator();
-	});
-	
-	$('#activity').on('change',function(event){
-		activity = $('#activity').val();
-		if (activity < 0){
-			activity = 0;
-			$('#activity').val(0);
-		}else if (activity > 24){
-			activity = 24;
-			$('#activity').val(24);
-		}
-		logVariables();
-		calculator();
-	});
-	//row4
-	//save value into a variable on radio selection
-	$('#standard').on('change',function(){
-		if ($(this).is(":checked")){
-			selectedLine = $(this).val();
-			console.log(selectedLine)
-		}
-		pricePerShaft = feeCalculator();
-		feeDisplay();
-	});
-	$('#premium').on('change',function(){
-		if ($(this).is(":checked")){
-			selectedLine = $(this).val();
-			console.log(selectedLine)
-		}
-		pricePerShaft = feeCalculator();
-		feeDisplay();
-	});
-	$('#excelium').on('change',function(){
-		if ($(this).is(":checked")){
-			selectedLine = $(this).val();
-			console.log(selectedLine)
-		}
-		pricePerShaft = feeCalculator();
-		feeDisplay();
-	});
-
-	
-
-
-	
-});
-
-
-	
-
-
-
-
-    
-
-        
 </script>
 
 </body>
