@@ -17,7 +17,7 @@
 	//row3 variables
 	var columns = $('#columns').val();
 	var shafts = $('#shafts').val();
-	var elevators;
+	var elevators, elevatorsPerColumn;
 	//row4 variables
 	var selectedLine ;
 	var feePercent;
@@ -32,11 +32,13 @@
 	var floorsPerColumn = 20;
 	var stories = floors + basements;
 
+	/*
 	//changes floors to only floors aboveground
 	var chgeFloors = function(){
 		parseVar();
 		floors = floors - basements;
 	};
+	*/
 
 	//converts a number to a string formated xxx,xxx,xxx (copied from blog.abelotech.com)
 	var formatNumber = function(x){
@@ -44,7 +46,8 @@
  		return x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 	};
 
-	var parseVar = function(){appartements = $("#appartements").val();
+	var parseVar = function(){
+		appartements = parseInt(appartements);
 		buisness = parseInt(buisness);
 		companies = parseInt(companies);
 		floors = parseInt(floors);
@@ -92,7 +95,7 @@
 				$('.corporate').show(500);
 			}else if (type === "commercial"){
 				$('.commercial').show(500);
-				comCalc();
+			
 
 			}else if(type === "hybrid"){
 				$('.hybrid').show(500);
@@ -102,6 +105,7 @@
 			//logVariables();
 	};
 		
+	/*
 	//calculator for a residential building
 	var resCalc = function(){
 		parseVar();
@@ -157,39 +161,104 @@
 		//logVariables();
 
 	};
-
+	*/
 
 
 	//general calculator function calls functions depends on type
 	var calculator = function(){
 
+
+		
+		//post to node
+		$.post('/building-config',{
+			//row1 variables
+			type : type,
+			appartements : appartements,
+			buisness : buisness,
+			companies : companies,
+			floors : floors,
+			
+			//row2 variables
+			basements : basements,
+			parking : parking,
+			occupants : occupants,
+			cages : cages,
+			activity : activity,
+			//row3 variables
+			columns : columns,
+			shafts : shafts,
+			elevators: elevators,
+			},
+			//callback results
+			function(project){
+				shafts = project.shafts;
+				columns = project.columns;
+				elevatorsPerColumn = project.elevatorsPerColumn;
+				elevators = project.elevators;
+				console.log("received : " + "temporary value for elevators : "+ elevators + " ; elevators per column : "+ elevatorsPerColumn);
+				displayCalculator();
+			}
+
+		)};
+			
+	function displayCalculator(){
+
+			console.log( "show calculator class")
 		$('.calculator').show(500);
 
+
+		/*
 			if (type === 'residential'){
 				//display the appropriate fields : appartments, floors, basements
-				$('.residential').show(500);
+				//$('.residential').show(500);
 				resCalc();
 		
 			}else if(type === "corporate"){
 				//display the appropriate fields : companies, floors, basements, parking, occupants
 
-				$('.corporate').show(500);
+				//$('.corporate').show(500);
 				corpHybCalc();
 				
 			}else if (type === "commercial"){
-				$('.commercial').show(500);
-				$('#columns-div').hide();
+				//$('.commercial').show(500);
+				//$('#columns-div').hide();
 				comCalc();
 
-			}else if(type === "hybrid"){
-				$('.hybrid').show(500);
-				corpHybCalc();
-			}else {
-				return;
-			}
+			}else 
+			*/
+			console.log (type);
+			if(type === "hybrid" || type === "corporate"){
+				//$('.hybrid').show(500);
+				//corpHybCalc();
+				$("#elevators-per-column-div").remove();
+				$("#elevators-tmp-div").remove();
+				
+				//create a display field to show elevatorsPerColumn and number of elevators(temporary value)
+				$('<div class="col-md-4 hidden" id="elevators-per-column-div" class="hidden">')
+				.appendTo('#row3')
+				.html(	'<label for="elevators-per-column" >number of elevators per column</label><input readonly id="elevators-per-column" type="number" value="" class="form-control">');
+				$('#elevators-per-column').val(elevatorsPerColumn);
+
+				$('<div class="col-md-4 hidden" id="elevators-tmp-div" class="hidden unwanted">')
+					.appendTo('#row3')
+					.html(	'<label for="elevators-tmp" >number of elevators</label><input readonly id="elevators-tmp" type="number" value="" class="form-control">');
+				$('#elevators-tmp').val(elevators);
+				//change shafts label
+				$("#shafts-label").text('total number of elevators');
+			}else if (type === "commercial") {
+				$('#columns-div').hide();
+
+			}else if (type === "residential"){ 
+
+			}else { return; }
+
+
+
+			
 			//display the results in shafts and columns fields
 			
-			$("#shafts").val(shafts);
+			console.log("shafts = "+ shafts);
+			$("#shafts").val(shafts );
 			$('#columns').val(columns);
 			
 				lineSelector();
@@ -333,7 +402,7 @@ $(document).ready(function(){
 	$('#floors').on('change',function(event){
 		floors = $('#floors').val();
 		basements = $('#basements').val();
-		chgeFloors();
+		//chgeFloors();
 		if (floors < 0){
 			floors = 0;
 			$('#floors').val(0);
@@ -345,7 +414,7 @@ $(document).ready(function(){
 	$('#basements').on('change',function(event){
 		basements = $('#basements').val();
 		floors = $('#floors').val();
-		chgeFloors();
+		//chgeFloors();
 		if (basements < 0){
 			basements = 0;
 			$('#basements').val(0);
