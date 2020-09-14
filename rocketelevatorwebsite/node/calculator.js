@@ -11,7 +11,6 @@ app.use(express.static('../'))//allows .html to work locally
 app.use(morgan('short')) //combined or short options
 app.use(cors())//enables all cors requests
 
-
 // define the server PORT
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
