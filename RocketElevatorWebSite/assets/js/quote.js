@@ -38,8 +38,8 @@
 		console.log("row1 : "+"type "+ type + ", apt " + appartements +", buisnesses "+ buisness + ', companies '+ companies + ', floors '+ floors);
 		console.log( "row2 : "+" basements "+ basements + ", parking "+ parking + ", occupants " + occupants + ", cages "+ cages+ ", activity" + activity);
 		console.log("row3 : "+"columns "+ columns + ", shafts/cages/elevators "+ shafts + ", temporary elevator value" + elevators);
-		console.log("final form : "+ selectedLine+ ", total Material "+ totalMat + ", installation fee" + fee );
-		console.log("TOTAL : " + ttl);
+		console.log("final form : "+ selectedLine+ ", total Material "+ totalMatString + ", installation fee" + feeString );
+		console.log("TOTAL : " + totalString);
 
 		};
 	
@@ -99,7 +99,7 @@
 				columns = project.columns;
 				elevatorsPerColumn = project.elevatorsPerColumn;
 				elevators = project.elevators;
-				console.log("received : " + "temporary value for elevators : "+ elevators + " ; elevators per column : "+ elevatorsPerColumn);
+				//console.log("received : " + "temporary value for elevators : "+ elevators + " ; elevators per column : "+ elevatorsPerColumn);
 				displayCalculator();
 			}
 
@@ -108,11 +108,9 @@
 			
 	function displayCalculator(){
 
-			console.log( "show calculator class")
+			//console.log( "show calculator class")
 		$('.calculator').show(500);
 
-
-			console.log (type);
 			if(type === "hybrid" || type === "corporate"){
 				//$('.hybrid').show(500);
 				//corpHybCalc();
@@ -139,7 +137,6 @@
 			}else { return; }
 			//display the results in shafts and columns fields
 			
-			console.log("shafts = "+ shafts);
 			$("#shafts").val(shafts);
 			$('#columns').val(columns);
 			
@@ -183,7 +180,7 @@
 					feePercent = line.feePercent;
 					feeString = line.feeString;
 					totalString = line.totalString;
-						console.log("recieved callback for Quote");
+					//	console.log("recieved callback for Quote");
 					//function te be called after the callback
 					displayQuote();
 				}

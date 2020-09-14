@@ -24,7 +24,6 @@ app.get("/", (req,res) => {
     res.send('Hello from calculator app')
 })
 
-
 //rocket elevator specific variables
 var floorsPerColumn = 20;
 var standardPrice = 7565 , premiumPrice = 12345 , exceliumPrice = 15400; 
