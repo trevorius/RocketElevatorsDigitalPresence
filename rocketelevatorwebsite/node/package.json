@@ -1,12 +1,12 @@
 {
-  "name": "calculator",
+  "name": "genesis-node-app",
   "version": "1.0.0",
-  "description": "calculates the quote for Rocket Elevators",
+  "description": "app to calculate quotes",
   "main": "calculator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "trevor kitchen",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

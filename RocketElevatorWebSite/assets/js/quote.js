@@ -71,7 +71,7 @@
 	//general calculator function calls functions depends on type
 	var calculator = function(){		
 		//post to node
-		$.post('/building-config',{
+		$.post('https://evening-forest-73830.herokuapp.com/building-config',{
 			//row1 variables
 			type : type,
 			appartements : appartements,
@@ -170,7 +170,7 @@
 		}
 		
 		//post radio selection callback values to finish the form
-			$.post("/line-selection",{
+			$.post("https://evening-forest-73830.herokuapp.com/line-selection",{
 				shafts: shafts,
 				selectedLine: selectedLine,
 				},
