@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require('./node_modules/express');
 const app = express();
 
 //middleware
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const morgan = require('./node_modules/morgan');
+const bodyParser = require('./node_modules/body-parser');
+const cors = require('./node_modules/cors/lib');
 
 app.use(bodyParser.urlencoded({extended: false})) //middleware to process request easier
 app.use(express.static('../'))//allows .html to work locally 
@@ -25,8 +25,13 @@ app.get("/", (req,res) => {
 })
 
 
-
+//rocket elevator specific variables
 var floorsPerColumn = 20;
+var standardPrice = 7565 , premiumPrice = 12345 , exceliumPrice = 15400; 
+var standardFee  = 10 , premiumFee = 13 , exceliumFee = 16;
+
+
+//global variables used in the program:
 var type, appartements, stories, buisness, companies,basements, parking, occupants, cages, activity, columns, shafts, elevators, floors, elevatorsPerColumn, elevators;
 //receives the post
 app.post('/building-config', (req, res) => {
@@ -47,15 +52,78 @@ app.post('/building-config', (req, res) => {
 			 columns = parseInt(req.body.columns);
 			 shafts = parseInt(req.body.shafts);
              elevators = parseInt(req.body.elevators);
-            console.log(cages);
-			shafts = calcCom();
-			calculator();
-            console.log("testing ... shafts = " + shafts);
+            calculator();
+			//console.log(selectedLine +"is selected")
+			calculateCosts();
+            //console.log("testing ... shafts = " + shafts);
+			
 			//sends back
-			res.status(200).send({ shafts: shafts, columns: columns, elevatorsPerColumn: elevatorsPerColumn, elevators: elevators });
+			res.status(200).send({ 
+				shafts: shafts, 
+				columns: columns, 
+				elevatorsPerColumn: elevatorsPerColumn, 
+				elevators: elevators});
 
     res.end();
 });
+
+var selectedLine, pricePerShaft, totalMat, feePercent, fee, total, totalMatString,  feeString, pricePerShaftString, totalString;
+app.post('/line-selection', (req,res) => {
+	//variables to work with
+	shafts = parseInt(req.body.shafts);
+	selectedLine = req.body.selectedLine;
+	//console.log("test received : shafts = "+ shafts+ " line = "+ selectedLine);	
+	//function to be run before callback
+	calculateCosts();
+	//callback (send)
+	res.status(200).send({ //data to be sent as key: value,...
+		totalMatString: totalMatString,
+		feePercent: feePercent,
+		pricePerShaftString: pricePerShaftString,
+		feeString: feeString,
+		totalString:totalString	});
+
+	res.end()
+});
+
+
+function calculateCosts(){
+	//define prices dependant on the line
+	if (selectedLine === "standard"){
+		//feepercent is 10
+		feePercent = standardFee;
+		pricePerShaft = standardPrice;
+	}
+	//if premium is selected
+else if (selectedLine === "premium"){
+		//feePercent is 13
+		feePercent = premiumFee;
+		pricePerShaft = premiumPrice;
+	}
+	//if excelium is selected
+else if (selectedLine === "excelium"){
+		//feePercent is 16
+		feePercent = exceliumFee;
+		pricePerShaft = exceliumPrice;
+}else {return;}
+
+totalMat = shafts * pricePerShaft;
+fee = Math.round((feePercent/100 * shafts * pricePerShaft) * 100) / 100;
+total = (totalMat) + fee;
+	console.log("total = "+ total)	
+
+//stringify results xxx,xxx,xxx.xx
+totalMatString = formatNumber(totalMat);
+pricePerShaftString = formatNumber(pricePerShaft); 
+feeString = formatNumber(fee);
+totalString = formatNumber(total);
+
+};
+
+var formatNumber = function(x){
+	x = x.toFixed(2);
+	 return x.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+};
 
 function calcCom(){
 
@@ -72,7 +140,7 @@ var logVariables = function(){
 	console.log( "row2 : "+" basements "+ basements + ", parking "+ parking + ", occupants " + occupants + ", cages "+ cages+ ", activity" + activity);
 	console.log("row3 : "+"columns "+ columns + ", shafts/cages/elevators "+ shafts + ", temporary elevator value" + elevators);
 	console.log("final form : "+ selectedLine+ ", total Material "+ totalMat + ", installation fee" + fee );
-	console.log("TOTAL : " + ttl);
+	console.log("TOTAL : " + total);
 
 	};
 
@@ -82,23 +150,15 @@ function calculator(){
 	floors = stories - basements;
 
 	if (type === 'residential'){
-		//display the appropriate fields : appartments, floors, basements
-		//$('.residential').show(500);
 		resCalc();
 
 	}else if(type === "corporate"){
-		//display the appropriate fields : companies, floors, basements, parking, occupants
-
-		//$('.corporate').show(500);
 		corpHybCalc();
 		
 	}else if (type === "commercial"){
-		//$('.commercial').show(500);
-		//$('#columns-div').hide();
 		comCalc();
 
 	}else if(type === "hybrid"){
-		//$('.hybrid').show(500);
 		corpHybCalc();
 	}else {
 		return;
@@ -108,13 +168,8 @@ function calculator(){
 
 };
 
-
-
-
 //calculator for a residential building
 function resCalc(){
-	//parseVar();
-	
 	//calculate average doors per floor (appartements/floors) 
 	var avgDoors = Math.ceil(appartements / floors);
 	//calculate number of columns ( 1 + (floors/floorsPerColumn))
@@ -127,10 +182,6 @@ function resCalc(){
 
 //calculator for corporate and hybrid buildings
 var corpHybCalc = function(){
-	//$("#elevators-per-column-div").remove();
-	//$("#elevators-tmp-div").remove();
-	//parseVar();
-	
 	//calculate total number of occupants ((floors+basements)*occupants)
 	var totalOccupants = occupants * (floors+basements);
 	//number of elevators (totalOccupants/1000)
@@ -141,38 +192,16 @@ var corpHybCalc = function(){
 	//number of elevators per column ([elevators|shafts]/columns)
 	elevatorsPerColumn = Math.ceil(elevators / columns);
 	
-	/*
-	//create a display field to show elevatorsPerColumn and number of elevators(temporary value)
-	$('<div class="col-md-4 hidden" id="elevators-per-column-div" class="hidden">')
-		.appendTo('#row3')
-		.html(	'<label for="elevators-per-column" >number of elevators per column</label><input readonly id="elevators-per-column" type="number" value="" class="form-control">');
-	$('#elevators-per-column').val(elevatorsPerColumn);
-
-	$('<div class="col-md-4 hidden" id="elevators-tmp-div" class="hidden unwanted">')
-		.appendTo('#row3')
-		.html(	'<label for="elevators-tmp" >number of elevators</label><input readonly id="elevators-tmp" type="number" value="" class="form-control">');
-	$('#elevators-tmp').val(elevators);
-	*/
-
 	//calculate total number of elevators (elevatorsPerColumn*columns)
 	shafts = elevatorsPerColumn * columns;
 	
-	//change text of shaft label to display totalElevators
-	//$("#shafts-label").text('total number of elevators');
 	//logVariables();
 
 };
 
 //commercial calculator function
 var comCalc = function(){
-	//parseVar();
-	//display number of cages in shaft field and keep column field hidden
 	shafts = cages ;
-	
-	
-	//$('#columns-div').hide();
-	
-	
 	//logVariables();
 
 };
