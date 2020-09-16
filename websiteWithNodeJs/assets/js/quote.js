@@ -1,4 +1,4 @@
-
+	// to go remote uncomment urls and change name also change link in .html reverse to go local...
 	//save values into variables of the same name (for navigation simplicity)
 
 	//row1 variables
@@ -75,7 +75,9 @@
 	//general calculator function calls functions depends on type
 	var calculator = function(){		
 		//post to node
+		//$.post('/building-config',{
 		$.post('https://evening-forest-73830.herokuapp.com/building-config',{
+
 			//row1 variables
 			type : type,
 			appartements : appartements,
@@ -174,7 +176,9 @@
 		}
 		
 		//post radio selection callback values to finish the form
+			//$.post("/line-selection",{
 			$.post("https://evening-forest-73830.herokuapp.com/line-selection",{
+
 				shafts: shafts,
 				selectedLine: selectedLine,
 				},
@@ -202,17 +206,144 @@
 
 		$('#total').val(totalString + ' $');
 		logVariables();
+		showSave();
 	};
 
 		//not necessary display installation fee percentage 
 	function wakeUpHeroku(){
 		
+		//$.post("/wake-up",{state: "wakeyWakey"},
 		$.post("https://evening-forest-73830.herokuapp.com/wake-up",{state: "wakeyWakey"},
-				function(status){//callback
+
+			function(status){//callback
 					state = status.state;
 					console.log("heroku app just yawned and woke up... status: " + state);
 				}
 			)
+	};
+
+	function showSave (){
+		console.log($('#total').val())
+		if ($('#total').val() != ""){
+			$("#save-submission-div").show();
+		}
+	};
+
+	var tenants;
+	var projectName = $('#project-name').val();
+	var projectNumber;
+
+	function saveProject(){
+		if(type === "hybrid" || type === "corporate"){
+			tenants = companies;
+		}else if (type === "commercial") {
+			tenants = buisness;
+		}else if (type === "residential"){ 
+			tenants = appartements;
+		}else { return; }
+		projectName = $('#project-name').val();
+		console.log(projectName);
+		//post radio selection callback values to finish the form
+		
+		//$.post("/save-project",{
+		$.post("https://evening-forest-73830.herokuapp.com/save-project",{
+
+			projectName: projectName,
+			//row1
+			tenants: tenants,
+			floors: floors,
+			type: type,
+			//row2 variables
+			basements : basements,
+			parking : parking,
+			occupants : occupants,
+			cages : cages,
+			activity : activity,
+		
+			//row3 variables
+			line :selectedLine,
+			columns : columns,
+			shafts : shafts,
+			elevators: elevators,
+			//totals
+			totalMatString: totalMatString,
+			feeString: feeString,
+			totalString: totalString
+			},
+
+			
+			function(project){//callback
+				projectNumber = project.projectNumber ;
+			
+					console.log("recieved callback for project id number " + projectNumber);
+				//function te be called after the callback
+			$("#project-number").text(projectNumber);
+			}
+		)
+	};
+var loadId;
+	function loadProject(x){
+		//$.post("/load-project", {
+		$.post("https://evening-forest-73830.herokuapp.com/load-project", {
+
+			loki: x
+		},
+
+		//callback results of calcul into object data.
+		function(project){
+			console.log("Result received: " + project.name + " projectnumber : "+ project.$loki);
+			
+			//put different project vallues into variables to display
+			const Lname= project.name;
+			const L$loki= project.$loki;
+			//row1
+			const Ltenants= project.tenants;
+			const Lfloors= project.floors;
+			const Ltype= project.type;
+			//row2 variables
+			const Lbasements = project.basements;
+			const Lparking = project.parking;
+			const Loccupants = project.occupants;
+			const Lcages = project.cages;
+			const Lactivity = project.activity;
+
+			//row3 variables
+			const Lcolumns = project.columns;
+			const Lshafts = project.shafts;
+			const Lelevators= project.elevators;
+			//totals
+			const LtotalMat= project.totalMat;
+			const Lfee= project.fee;
+			const Ltotal= project.total;
+			const Lline= project.line
+			
+		  $('.show2').show();
+		  console.log(Ltype);
+		  if(Ltype === "hybrid" || Ltype === "corporate"){
+			$(".show-corp").show();
+		}else if (Ltype === "commercial") {
+			$(".show-com").show();
+		}else if (Ltype === "residential"){ 
+			$(".show-res").show();
+		}else { return; }
+		$('#loaded-name').text(Lname);
+		$('#loaded-type').text(Ltype);
+		$('#loaded-tenants').text(Ltenants);
+		$('#loaded-floors').text(Lfloors);
+		$('#loaded-basements').text(Lbasements);
+		$('#loaded-parking').text(Lparking);
+		$('#loaded-occupants').text(Loccupants);
+		$('#loaded-cages').text(Lcages);
+		$('#loaded-activity').text(Lactivity);
+		$('#loaded-line').text(Lline);
+		$('#loaded-totalmat').text(LtotalMat);
+		$('#loaded-fee').text(Lfee);
+		$('#loaded-total').text(Ltotal);
+		$('#loaded-columns').text(Lcolumns);
+		$('#loaded-shafts').text(Lshafts);
+
+
+	});
 	};
 
 $(document).ready(function(){
@@ -351,5 +482,21 @@ $(document).ready(function(){
 		}
 		feeDisplay();
 	});
+	
+	$('#save').on('click', function(){
+		$('.show-on-save').show();
+		saveProject();
+	});
+
+	$('#load').on('click', function(){
+		loadId = $('#load-number').val();
+		console.log(loadId+ " project will be loaded");
+		//$('.load-project-display').hide();
+		$('.show-com').hide();
+		$('.show-res').hide();
+		$('.show-corp').hide();
+		loadProject(loadId);
+	});
+
 });
 

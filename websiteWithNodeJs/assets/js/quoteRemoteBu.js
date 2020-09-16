@@ -75,9 +75,7 @@
 	//general calculator function calls functions depends on type
 	var calculator = function(){		
 		//post to node
-		$.post('/building-config',{
-		//$.post('https://evening-forest-73830.herokuapp.com/building-config',{
-
+		$.post('https://evening-forest-73830.herokuapp.com/building-config',{
 			//row1 variables
 			type : type,
 			appartements : appartements,
@@ -176,9 +174,7 @@
 		}
 		
 		//post radio selection callback values to finish the form
-			$.post("/line-selection",{
-			//$.post("https://evening-forest-73830.herokuapp.com/line-selection",{
-
+			$.post("https://evening-forest-73830.herokuapp.com/line-selection",{
 				shafts: shafts,
 				selectedLine: selectedLine,
 				},
@@ -206,80 +202,18 @@
 
 		$('#total').val(totalString + ' $');
 		logVariables();
-		showSave();
 	};
 
 		//not necessary display installation fee percentage 
 	function wakeUpHeroku(){
 		
-		$.post("/wake-up",{state: "wakeyWakey"},
-		//$.post("https://evening-forest-73830.herokuapp.com/wake-up",{state: "wakeyWakey"},
-
-			function(status){//callback
+		$.post("https://evening-forest-73830.herokuapp.com/wake-up",{state: "wakeyWakey"},
+				function(status){//callback
 					state = status.state;
 					console.log("heroku app just yawned and woke up... status: " + state);
 				}
 			)
 	};
-
-	function showSave (){
-		console.log($('#total').val())
-		if ($('#total').val() != ""){
-			$("#save-submission-div").show();
-		}
-	};
-
-	var tenants;
-	var projectName = $('#project-name').val();
-
-	function saveProject(){
-		if(type === "hybrid" || type === "corporate"){
-			tenants = companies;
-		}else if (type === "commercial") {
-			tenants = buisness;
-		}else if (type === "residential"){ 
-			tenants = appartements;
-		}else { return; }
-
-	//post radio selection callback values to finish the form
-	$.post("/save-project",{
-		//$.post("https://evening-forest-73830.herokuapp.com/save-project",{
-
-			name: projectName,
-			//row1
-			tenants: tenants,
-			floors: floors,
-			type: type,
-			//row2 variables
-			basements : basements,
-			parking : parking,
-			occupants : occupants,
-			cages : cages,
-			activity : activity,
-		
-			//row3 variables
-			columns : columns,
-			shafts : shafts,
-			elevators: elevators,
-			//totals
-			totalMat: totalMatString,
-			fee: feeString,
-			total: totalString
-			},
-
-			
-			function(project){//callback
-				pricePerShaftString = line.pricePerShaftString;
-				totalMatString = line.totalMatString;
-				feePercent = line.feePercent;
-				feeString = line.feeString;
-				totalString = line.totalString;
-				//	console.log("recieved callback for Quote");
-				//function te be called after the callback
-				displayQuote();
-			}
-		)
-	}
 
 $(document).ready(function(){
 
@@ -417,11 +351,5 @@ $(document).ready(function(){
 		}
 		feeDisplay();
 	});
-	
-	$('#save').on('click', function(){
-		$('.show-on-save').show();
-		saveProject();
-	});
-
 });
 
