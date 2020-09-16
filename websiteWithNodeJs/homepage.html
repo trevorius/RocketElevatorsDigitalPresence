@@ -1079,7 +1079,7 @@
 								<img class="img-fluid" src="https://elevatortoday.com/wp-content/uploads/2018/06/invisiblewheelchairlift-1-218x150.jpg" alt="">
 							</a>
 
-							<h4 class="text-left mt-20"><a href="https://elevatortoday.com/2018/06/12/invisible-wheelchair-lift/">invisible wheelchair Lift</a></h4>
+							<h4 class="text-left mt-20"><a href="https://elevatortoday.com/2018/06/12/invisible-wheelchair-lift/">Invisible wheelchair Lift</a></h4>
 							<p class="text-left">Sesame Invisible Lift is the ideal solution for buildings where you need to have a wheelchair lift but you want it to be hidden, blended with your interior.
 
 								For rises below 1000mm, the Sesame patented wheelchair platform lift offers a practical disabled access solution with a modern, stylish exterior that belies its simple, user-friendly operating system. The lift is built with a unique wheel stop which is designed to prevent wheelchair wheels from moving around on the platform once in position.</p>
@@ -1322,8 +1322,9 @@
 								<strong>Sorry!</strong> You need to complete all mandatory (*) fields!
 							</div><!-- /Alert Mandatory -->
 
-
-							<form action="php/contact.php" method="post" enctype="multipart/form-data">
+							<!-- can be uncommented if php is configured
+							<form action="php/contact.php" method="post" enctype="multipart/form-data"> -->
+							<form>
 								<fieldset>
 									<input type="hidden" name="action" value="contact_send" />
 
@@ -1387,11 +1388,11 @@
 
 
 								<!--send button can be added if php has been configured-->
-								<!--div class="row">
+								<div class="row">
 									<div class="col-md-12">
-										<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SEND MESSAGE</button>
+										<button id="send" type="button" class="btn btn-primary"><i class="fa fa-check"></i> SEND MESSAGE</button>
 									</div>
-								</div-->
+								</div>
 							</form>
 
 						</div>
@@ -1475,12 +1476,12 @@
 							<!-- Newsletter Form -->
 							<p>Subscribe to Our Newsletter to get Important News & Offers</p>
 
-							<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
+							<form class="validate"  data-toastr-position="bottom-right">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 									<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
 									<span class="input-group-btn">
-										<button class="btn btn-success" type="submit">Subscribe</button>
+										<button  id="subscribe" class="btn btn-success" type="button">Subscribe</button>
 									</span>
 								</div>
 							</form>
@@ -1543,7 +1544,12 @@
 		<script src="//maps.google.com/maps/api/js?key=AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY"></script>
 		
 		<script>
-
+			$('#send').on('click',function(){
+				alert("Thank You! Your message successfully sent!");
+			});
+			$('#subscribe').on('click',function(){
+				alert("Thank You! for your subscription");
+			});
 			
 		</script>
 	</body>
