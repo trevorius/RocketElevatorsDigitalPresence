@@ -28,7 +28,26 @@
 
 		<!-- PAGE LEVEL SCRIPTS -->
 		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/color_scheme/red.css" rel="stylesheet" type="text/css" id="color_scheme" />
+		<link href="assets/css/color_scheme/blue.css" rel="stylesheet" type="text/css" id="color_scheme" />
+
+		<style>
+			.btn-default:hover{
+				  color:DarkGrey;
+			   background-color:white;
+			   }
+			   .btn-blue:hover{
+				   color:grey;
+				   background-color:mediumblue;
+			   }
+			   .btn-primary:hover{
+				   color:grey;
+				   background-color:mediumblue;
+			   }
+			   .btn-red:hover{
+				   color:grey;
+				   background-color:darkred;
+			   }
+	   </style>
 	</head>
 
 	<!--AVAILABLE BODY CLASSES:
@@ -189,7 +208,7 @@
 			</section>
             <!-- /PAGE HEADER -->
             
-
+			<div class="row ml-4" ><p>Fill in the fields of the quotation form or enter your project number to load a saved form. </p></div>
             <!-- quotation form-->
             <div class="col-md-12 col-sm-12">
 				<!--input form-->
@@ -279,20 +298,24 @@
 				<!--/ elements for quote-->
 				<!--product line selection-->
                 <form id="radio-form">
-                    <div id="row4" class=" row hidden">
-                        <div class="col-md-12">Product Line</div>
-                        <div class="col-md-3 text-center">
-                            <input type="radio" class = "line-selector" id="standard" name="options" value="standard">
-                            <label for="standard">STANDARD</label>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <input type="radio" class = "line-selector" id="premium" name="options" value="premium">
-                            <label for="premium">PREMIUM</label>
-                        </div>
-                        <div class="col-md-3 text-center">    
-                            <input type="radio" class = "line-selector" id="excelium" name="options" value="excelium">
-                            <label for="excelium">EXCELIUM</label>
-                        </div>
+                    <div id="row4" class=" row4 row hidden">
+						<div class="col-md-12">Product Line</div>
+					</div>	
+					<div class="row4 row hidden  ">
+						
+							<label  class="col-md-3 text-center btn  active btn-primary">
+								<input autocomplete="off" type="radio" class = "line-selector" id="standard" name="options" value="standard">
+								STANDARD</label>
+							
+							<label  class="col-md-3 text-center btn  active btn-primary">
+								<input autocomplete="off" type="radio" class = "line-selector" id="premium" name="options" value="premium">
+								PREMIUM</label>
+							
+								<label class="col-md-3 text-center active btn  btn-primary">    
+								<input  autocomplete="off" type="radio" class = "line-selector" id="excelium" name="options" value="excelium">
+								EXCELIUM</label>
+							</div>
+						
                     </div>
 				</form>
 				<!--/product line selection-->
@@ -339,67 +362,70 @@
             <!-- /quotation form-->
 
 			<!-- database save and search -->
-			<section id="database"class="text-success">
-				<div id="save-submission-div" class="hidden show-with-total">
-					<input id="project-name" type="text" maxlength="30" placeholder="PROJECT NAME" value="" >
-					<button type="button" id="save">save</button>
-				</div>
-				<div class="hidden show-on-save">
-					<p>your Project number is <span id="project-number"></span> keep note of this number to be able to load your project's quote.</p>
-				</div>
-				<div>
-					<input id="load-number" type="number" placeholder="project-number" value="" >
-					<button type="button" id="load">load</button>
+			<section id="database"class="text-primary">
+				<div class="row ml-5">	
+						<div id="save-submission-div" class="hidden show-with-total col-4">
+						<input id="project-name" type="text" maxlength="30" placeholder="PROJECT NAME" value="" >
+						<button type="button" id="save" class="btn-sm btn-red " >save</button>
+					</div>
+					<div class="hidden show-on-save col-4">
+						<p>Your project number is <span id="project-number" class="text-danger" ></span> ;<br>
+							keep note of this number to be able to load your project's quote.</p>
+					</div>
+					<div class="md-4">
+						<input id="load-number" type="number" placeholder="project-number" value="" >
+						<button type="button" id="load" class= " btn-sm btn-primary ">load</button>
 
 
+					</div>
 				</div>
-				<div class="row load-project-display show2">
-				<div id="project-name-div" class="col-md-2 hidden show2">
-					<p>project name : <span id="loaded-name" class="text-primary"></span></p>
-				</div>
+				<div class="row load-project-display ml-5 show2">
+					<div id="project-name-div" class="col-md-2 hidden show2">
+						<p>project name : <span id="loaded-name" class="text-danger"></span></p>
+					</div>
 					<div id="loaded-type-div" class="col-md-2 hidden show2">
-						<p>building type : <span id="loaded-type" class="text-primary"></span></p>
+						<p>building type : <span id="loaded-type" class="text-danger"></span></p>
 					</div>
 					<div id="tenants-div" class="col-md-2 hidden show2">
-						<p>tenants : <span id="loaded-tenants" class="text-primary"></span></p>
+						<p>tenants : <span id="loaded-tenants" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-stories-div" class="col-md-2 hidden show2">
-						<p>floors : <span id="loaded-floors" class="text-primary"></span></p>
+						<p>floors : <span id="loaded-floors" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-basements-div" class="col-md-2 hidden show2">
-						<p>basements : <span id="loaded-basements" class="text-primary"></span></p>
+						<p>basements : <span id="loaded-basements" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-parking-div" class="col-md-2 hidden show-corp">
-						<p>parking : <span id="loaded-parking" class="text-primary"></span></p>
+						<p>parking : <span id="loaded-parking" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-occupants-div" class="col-md-2 hidden show-corp">
-						<p>occupants : <span id="loaded-occupants" class="text-primary"></span></p>
+						<p>occupants : <span id="loaded-occupants" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-cages-div" class="col-md-2 hidden show-com">
-						<p>cages: <span id="loaded-cages" class="text-primary"></span></p>
+						<p>cages: <span id="loaded-cages" class="text-danger"></span></p>
 					</div>	
 					<div id="loaded-activity-div" class="col-md-2 hidden show-com">
-						<p>hours of activity: <span id="loaded-activity" class="text-primary"></span></p>
+						<p>hours of activity: <span id="loaded-activity" class="text-danger"></span></p>
 					</div>
 
 					<div id="loaded-columns-div" class="col-md-2 hidden show2">
-						<p>columns: <span id="loaded-columns" class="text-primary"></span></p>
+						<p>columns: <span id="loaded-columns" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-shafts-div" class="col-md-2 hidden show2">
-						<p>shafts: <span id="loaded-shafts" class="text-primary"></span></p>
+						<p>shafts: <span id="loaded-shafts" class="text-danger"></span></p>
 					</div>
 					
 					<div id="loaded-line-div" class="col-md-2 hidden show2">
-						<p>selected line: <span id="loaded-line" class="text-primary"></span></p>
+						<p>selected line: <span id="loaded-line" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-totalmat-div" class="col-md-2 hidden show2">
-						<p>total material costs: <span id="loaded-totalmat" class="text-primary"></span></p>
+						<p>total material costs: <span id="loaded-totalmat" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-fee-div" class="col-md-2 hidden show2">
-						<p>instalation fee: <span id="loaded-fee" class="text-primary"></span></p>
+						<p>instalation fee: <span id="loaded-fee" class="text-danger"></span></p>
 					</div>
 					<div id="loaded-total-div" class="col-md-2 hidden show2">
-						<p>TOTAL: <span id="loaded-total" class="text-primary"></span></p>
+						<p>TOTAL: <span id="loaded-total" class="text-danger"></span></p>
 					</div>
 				</div>
 			</section>

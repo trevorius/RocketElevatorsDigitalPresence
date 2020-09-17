@@ -27,11 +27,7 @@
 	var instalationPrice , totalMat;
 	var fee, ttl;
 	
-/*
-	//global variable for the number of floors before adding a column can be changed if regulations change.
-	var floorsPerColumn = 20;
-	var stories = floors + basements;
-	*/
+
 
 	//logVariables();
 	var logVariables = function(){
@@ -155,9 +151,9 @@
 	var lineSelector = function(){
 		//display the form if there is a value to quote
 		if (shafts > 0){
-			$('#row4').show(500);
+			$('.row4').show(500);
 		}else {
-			$("#row4").hide(500);
+			$(".row4").hide(500);
 		}
 		feeDisplay();
 	};
